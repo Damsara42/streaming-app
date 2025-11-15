@@ -1,0 +1,6 @@
+/* Main styles (starter) */
+:root { --bg:#030307; --card:#0f0f12; --accent:#0ff; color-scheme: dark; }
+body { margin:0; font-family: Arial, Helvetica, sans-serif; background:var(--bg); color:#ddd; }
+.header { padding:20px; display:flex; justify-content:space-between; align-items:center; }
+.container { max-width:1100px; margin:20px auto; padding:0 16px; }
+.show-card { background:var(--card); padding:12px; border-radius:8px; margin-bottom:12px; }

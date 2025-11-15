@@ -1,0 +1,4 @@
+node_modules/
+database/stream.db
+.env
+.DS_Store
