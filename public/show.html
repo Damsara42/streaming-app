@@ -1,15 +1,57 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta charset="utf-8">
-  <title>Show Page</title>
-  <link rel="stylesheet" href="css/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loading Show... - StreamHub</title>
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-  <main class="container">
-    <h1 id="show-title">Show Title</h1>
-    <div id="episodes"></div>
-  </main>
-  <script src="js/main.js"></script>
+
+    <header class="main-header">
+        <a href="/" class="logo">StreamHub</a>
+        <nav>
+            <a href="/">Home</a>
+            </nav>
+        </header>
+
+    <section class="show-banner" style="background-image: url('/assets/images/placeholder-banner.jpg');">
+        <div class="show-banner-content">
+            <div class="show-banner-poster">
+                <img id="show-poster-img" src="/assets/images/placeholder-poster.jpg" alt="Show Poster">
+            </div>
+            <div class="show-banner-info">
+                <h1 id="show-title">Loading...</h1>
+                <div class="show-genres" id="show-genres">
+                    <span class="genre-tag">Loading</span>
+                </div>
+                <p class="show-description" id="show-description">
+                    Loading show description...
+                </p>
+                <a href="#episode-list" class="btn btn-secondary">Watch First Episode</a>
+            </div>
+        </div>
+    </section>
+
+    <main class="episode-list-container">
+        
+        <div id="continue-watching-bar" style="display: none;">
+            <div>
+                <p><strong>Continue Watching:</strong> <span id="continue-episode-title"></span></p>
+                </div>
+            <a href="#" id="continue-btn" class="btn btn-primary">Continue</a>
+        </div>
+
+        <h2 id="episode-list-heading">Episodes</h2>
+        <div class="episode-list" id="episode-list">
+            <div class="episode-card">
+                <div class="episode-details">
+                    <h3>Loading episodes...</h3>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <script src="/js/show.js"></script>
 </body>
 </html>

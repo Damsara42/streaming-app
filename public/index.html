@@ -1,21 +1,68 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta charset="utf-8">
-  <title>Streaming App</title>
-  <link rel="stylesheet" href="css/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StreamHub - K-Drama & Anime</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="icon" href="/assets/images/favicon.ico" type="image/x-icon">
 </head>
 <body>
-  <header class="header">
-    <div class="logo">Streaming App</div>
-    <nav><a href="login.html">Login</a></nav>
-  </header>
-  <main class="container">
-    <h1>Featured Shows</h1>
-    <div id="shows-list">
-      <div class="show-card">Sample Show (placeholder)</div>
-    </div>
-  </main>
-  <script src="js/main.js"></script>
+
+    <header class="main-header">
+        <a href="/" class="logo">StreamHub</a>
+        <nav>
+            <a href="/" class="active">Home</a>
+            </nav>
+        <div class="search-box">
+            <input type="text" id="search-input" placeholder="Search title, genre...">
+            <button id="search-btn">Go</button>
+        </div>
+    </header>
+
+    <section class="hero-parallax">
+        <div class="hero-slider">
+            <div class="slide active" style="background-image: url('/assets/images/placeholder-banner.jpg');">
+                <div class="slide-content">
+                    <h1>Loading StreamHub</h1>
+                    <p>Your new home for K-Drama and Anime.</p>
+                    <a href="#" class="btn btn-primary">Watch Now</a>
+                </div>
+            </div>
+        </div>
+        <div classs="slider-nav">
+            <button class="prev">&lt;</button>
+            <button class="next">&gt;</button>
+        </div>
+    </section>
+
+    <main class="container">
+        
+        <section id="search-results" class="show-grid-container" style="display:none;">
+            <h2>Search Results</h2>
+            <div class="show-grid" id="search-grid">
+                </div>
+        </section>
+
+        <section id="categories-container">
+            <div class="show-grid-container">
+                <h2>Loading Categories...</h2>
+                <div class="show-grid">
+                    <div class="show-card"><div class="show-card-title">Loading...</div></div>
+                    <div class="show-card"><div class="show-card-title">Loading...</div></div>
+                    <div class="show-card"><div class="show-card-title">Loading...</div></div>
+                </div>
+            </div>
+        </section>
+        
+    </main>
+    
+    <footer>
+        <p style="text-align: center; color: #888; padding: 2rem 0; border-top: var(--glass-border); margin-top: 2rem;">
+            StreamHub &copy; 2025. All content provided by users.
+        </p>
+    </footer>
+
+    <script src="/js/main.js"></script>
 </body>
 </html>

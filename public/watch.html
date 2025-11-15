@@ -1,16 +1,45 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta charset="utf-8">
-  <title>Watch Episode</title>
-  <link rel="stylesheet" href="css/player.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Watching... - StreamHub</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/player.css">
 </head>
 <body>
-  <main class="container">
-    <div class="video-player">
-      <video id="video" controls width="100%" src=""></video>
-    </div>
-  </main>
-  <script src="js/player.js"></script>
+
+    <header class="main-header">
+        <a href="/" class="logo">StreamHub</a>
+        <nav>
+            <a href="/">Home</a>
+        </nav>
+    </header>
+
+    <main class="player-container">
+        
+        <h1 id="episode-title">Loading episode...</h1>
+        
+        <div class="video-embed-container">
+            <iframe 
+                id="gdrive-player"
+                src="" 
+                frameborder="0" 
+                scrolling="no" 
+                allowfullscreen
+                allow="autoplay">
+            </iframe>
+        </div>
+
+        <div class="episode-info">
+            <p id="episode-desc">Loading description...</p>
+            <button id="next-episode-btn" class="btn" style="display:none;">
+                Watch Next Episode &gt;
+            </button>
+        </div>
+        
+    </main>
+
+    <script src="/js/player.js"></script>
 </body>
 </html>

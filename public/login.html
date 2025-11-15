@@ -1,19 +1,62 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta charset="utf-8">
-  <title>User Login</title>
-  <link rel="stylesheet" href="css/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login / Register - StreamHub</title>
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-  <main class="container">
-    <form id="user-login">
-      <h2>Login</h2>
-      <input name="email" placeholder="Email" />
-      <input name="password" type="password" placeholder="Password" />
-      <button type="submit">Login</button>
-    </form>
-  </main>
-  <script src="js/auth.js"></script>
+
+    <header class="main-header">
+        <a href="/" class="logo">StreamHub</a>
+        <nav>
+            <a href="/">Home</a>
+        </nav>
+    </header>
+
+    <main class="login-register-container">
+
+        <form id="login-form" class="auth-form" style="display: block;">
+            <h2>Login</h2>
+            <div class="form-group">
+                <label for="login-username">Username</label>
+                <input type="text" id="login-username" required>
+            </div>
+            <div class="form-group">
+                <label for="login-password">Password</label>
+                <input type="password" id="login-password" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Login</button>
+            <p id="login-error" class="error-message"></p>
+            <p class="form-toggle">
+                Don't have an account? <a href="#" id="to-register">Register here</a>
+            </p>
+        </form>
+
+        <form id="register-form" class="auth-form" style="display: none;">
+            <h2>Register</h2>
+            <div class="form-group">
+                <label for="register-username">Username</label>
+                <input type="text" id="register-username" required>
+            </div>
+            <div class="form-group">
+                <label for="register-password">Password</label>
+                <input type="password" id="register-password" required>
+            </div>
+            <div class="form-group">
+                <label for="register-password-confirm">Confirm Password</label>
+                <input type="password" id="register-password-confirm" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Register</button>
+            <p id="register-error" class="error-message"></p>
+            <p class="form-toggle">
+                Already have an account? <a href="#" id="to-login">Login here</a>
+            </p>
+        </form>
+
+    </main>
+
+    <script src="/js/auth.js"></script>
 </body>
 </html>
