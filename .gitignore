@@ -1,4 +1,20 @@
+# Node.js
 node_modules/
+npm-debug.log
+yarn-error.log
+
+# Database
+# DO NOT commit your database file.
 database/stream.db
-.env
+database/stream.db-journal
+
+# Operating System files
 .DS_Store
+Thumbs.db
+
+# Environment variables
+.env
+
+# Uploads
+# You might want to version-control placeholders, but not user uploads.
+public/uploads/
