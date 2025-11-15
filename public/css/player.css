@@ -1,3 +1,134 @@
-/* Player styles (starter) */
-.video-player { width:100%; max-width:900px; margin:0 auto; background:#000; }
-.controls { padding:8px; display:flex; gap:8px; align-items:center; }
+/* --- Player Page Specifics --- */
+.player-container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding-top: 80px; /* Header offset */
+}
+
+.player-container h1 {
+    font-size: 1.8rem;
+    color: var(--text-color);
+    margin-bottom: 1.5rem;
+}
+
+/* --- G-Drive Embed Player --- */
+.video-embed-container {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+    height: 0;
+    overflow: hidden;
+    max-width: 100%;
+    background: #000;
+    border-radius: 10px;
+    border: var(--glass-border);
+    box-shadow: 0 0 30px rgba(0,0,0,0.5);
+}
+
+.video-embed-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+/* --- Episode Info & Next Button --- */
+.episode-info {
+    background: var(--glass-bg);
+    border: var(--glass-border);
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-top: 2rem;
+}
+
+.episode-info p {
+    font-size: 1rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+}
+
+#next-episode-btn {
+    display: none; /* Hidden by default */
+    background: var(--primary-color);
+    color: #fff;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 10px var(--shadow-color-primary);
+}
+#next-episode-btn:hover {
+    background: #b030ff;
+    box-shadow: 0 0 20px var(--shadow-color-primary);
+    transform: translateY(-2px);
+}
+
+
+/* --- Custom Video Player UI (For <video> tag) ---
+--- NOTE: This is NOT used with the G-Drive Iframe ---
+*/
+.custom-video-player {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    border-radius: 10px;
+}
+
+.custom-video-player video {
+    width: 100%;
+    display: block;
+}
+
+.controls {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(15, 15, 26, 0.8);
+    backdrop-filter: blur(5px);
+    padding: 0.5rem 1rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.custom-video-player:hover .controls {
+    opacity: 1;
+}
+
+.controls button {
+    background: none;
+    border: none;
+    color: var(--text-color);
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+#seek-bar {
+    flex-grow: 1;
+    -webkit-appearance: none;
+    appearance: none;
+    height: 8px;
+    background: var(--glass-bg);
+    border-radius: 5px;
+    outline: none;
+}
+
+#seek-bar::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: var(--primary-color);
+    cursor: pointer;
+}
+
+#seek-bar::-moz-range-thumb {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: var(--primary-color);
+    cursor: pointer;
+}
