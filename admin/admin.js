@@ -443,7 +443,7 @@ function initEpisodesPage() {
 
     async function loadEpisodes(showId) {
         try {
-            const episodes = await apiFetch(`/api/shows/${showId}/episodes`); // Use public
+            const episodes = await apiFetch(`/api/admin/shows/${showId}/episodes`); // Use ADMIN route
             tableBody.innerHTML = '';
             episodes.forEach(ep => {
                 tableBody.innerHTML += `
@@ -490,7 +490,7 @@ function initEpisodesPage() {
 
 window.editEpisode = async (id) => {
     try {
-        const ep = await apiFetch(`/api/episodes/${id}`); // Use public
+        const ep = await apiFetch(`/api/admin/episodes/${id}`); // Use new ADMIN route
         document.getElementById('episode-id').value = ep.id;
         document.getElementById('episode-show-id').value = ep.show_id;
         document.getElementById('episode-number').value = ep.ep_number;
