@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node api/server.js",
     "dev": "nodemon api/server.js",
-    "initdb": "sqlite3 database/stream.db < database/schema.sql"
+    "initdb": "node database/init.js"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",

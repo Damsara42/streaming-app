@@ -158,7 +158,7 @@ router.post('/episodes', upload.single('thumbnail'), (req, res) => {
     const thumbnail = req.file ? `/uploads/images/${req.file.filename}` : null;
     
     // Default publish_date to now if not provided
-    const pubDate = publish_date || new Date().toISOString();
+    const pubDate = publish_date ? new Date(publish_date).toISOString() : new Date().toISOString();
 
     const sql = 'INSERT INTO episodes (show_id, ep_number, title, description, drive_url, thumbnail, publish_date) VALUES (?, ?, ?, ?, ?, ?, ?)';
     db.run(sql, [show_id, ep_number, title, description, drive_url, thumbnail, pubDate], function(err) {
@@ -170,12 +170,18 @@ router.post('/episodes', upload.single('thumbnail'), (req, res) => {
 });
 
 // PUT /api/admin/episodes/:id
+// PUT /api/admin/episodes/:id
 router.put('/episodes/:id', upload.single('thumbnail'), (req, res) => {
     const { ep_number, title, description, drive_url, publish_date } = req.body;
     const thumbnail = req.file ? `/uploads/images/${req.file.filename}` : null;
+
+    // --- START FIX ---
+    // Correctly handle publish date, even if it's empty
+    const pubDate = publish_date ? new Date(publish_date).toISOString() : new Date().toISOString();
     
     let sql = 'UPDATE episodes SET ep_number = ?, title = ?, description = ?, drive_url = ?, publish_date = ?';
-    let params = [ep_number, title, description, drive_url, publish_date];
+    let params = [ep_number, title, description, drive_url, pubDate];
+    // --- END FIX ---
 
     if (thumbnail) {
         sql += ', thumbnail = ?';
@@ -271,9 +277,43 @@ router.put('/slides/:id', upload.single('image'), (req, res) => {
 router.delete('/slides/:id', (req, res) => {
     db.run('DELETE FROM hero_slides WHERE id = ?', [req.params.id], function(err) {
         if (err) {
-            return res.status(5HA0).json({ error: err.message });
+            return res.status(500).json({ error: err.message });
         }
         res.status(204).send(); // No Content
+    });
+});
+
+// --- Episode Management (Admin) ---
+
+// GET /api/admin/shows/:id/episodes - Get ALL episodes for a show (bypasses publish filter)
+router.get('/shows/:id/episodes', (req, res) => {
+    const { id } = req.params;
+    // This query gets all episodes, unlike the public one
+    const sql = `
+        SELECT * FROM episodes 
+        WHERE show_id = ?
+        ORDER BY ep_number DESC
+    `;
+    db.all(sql, [id], (err, rows) => {
+        if (err) {
+            return res.status(500).json({ error: err.message });
+        }
+        res.json(rows);
+    });
+});
+
+// GET /api/admin/episodes/:id - Get a single episode for editing (bypasses filter)
+router.get('/episodes/:id', (req, res) => {
+    const { id } = req.params;
+    const sql = "SELECT * FROM episodes WHERE id = ?";
+    db.get(sql, [id], (err, row) => {
+        if (err) {
+            return res.status(500).json({ error: err.message });
+        }
+        if (!row) {
+            return res.status(404).json({ error: 'Episode not found.' });
+        }
+        res.json(row);
     });
 });
 

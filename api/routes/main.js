@@ -63,13 +63,17 @@ router.get('/shows/:id', (req, res) => {
 // GET /api/shows/:id/episodes - Get all episodes for a show
 router.get('/shows/:id/episodes', (req, res) => {
     const { id } = req.params;
-    // Only show episodes that are scheduled to be published
+    
+    // Create a perfect UTC timestamp in Node.js
+    const nowUTC = new Date().toISOString();
+
     const sql = `
         SELECT * FROM episodes 
-        WHERE show_id = ? AND publish_date <= CURRENT_TIMESTAMP
+        WHERE show_id = ? AND publish_date <= ?
         ORDER BY ep_number
     `;
-    db.all(sql, [id], (err, rows) => {
+    // Pass 'nowUTC' as the second parameter
+    db.all(sql, [id, nowUTC], (err, rows) => {
         if (err) {
             return res.status(500).json({ error: err.message });
         }
@@ -80,6 +84,10 @@ router.get('/shows/:id/episodes', (req, res) => {
 // GET /api/episodes/:id - Get details for a single episode
 router.get('/episodes/:id', (req, res) => {
     const { id } = req.params;
+    
+    // Create a perfect UTC timestamp in Node.js
+    const nowUTC = new Date().toISOString();
+
     const sql = `
         SELECT 
             e.*, 
@@ -88,9 +96,10 @@ router.get('/episodes/:id', (req, res) => {
              WHERE show_id = e.show_id AND ep_number = e.ep_number + 1) as next_episode_id
         FROM episodes e
         JOIN shows s ON e.show_id = s.id
-        WHERE e.id = ? AND e.publish_date <= CURRENT_TIMESTAMP
+        WHERE e.id = ? AND e.publish_date <= ?
     `;
-    db.get(sql, [id], (err, row) => {
+    // Pass 'nowUTC' as the second parameter
+    db.get(sql, [id, nowUTC], (err, row) => {
         if (err) {
             return res.status(500).json({ error: err.message });
         }

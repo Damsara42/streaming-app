@@ -87,7 +87,7 @@ INSERT INTO "categories" ("name") VALUES ('Latest');
 
 -- Insert a default admin user. Password is "admin"
 -- The hash is for 'admin' using bcryptjs with 10 salt rounds
-INSERT INTO "users" ("username", "password_hash") VALUES ('admin', '$2a$10$f/FL.imj/kI/pA.UWBehNOP6p3eLdTpW/NpDXTQsjEcJ/pXGTjlaa');
+INSERT INTO "users" ("username", "password_hash") VALUES ('admin', '$2a$10$GS9QR.MM2hkTVG/D7GVTj.r5jz8vGUATkMvXP.CIPlsbo8nI/5Pa6');
 
 -- Insert a placeholder hero slide
 INSERT INTO "hero_slides" ("title", "subtitle", "image", "link") VALUES 
